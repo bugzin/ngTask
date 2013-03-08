@@ -1,0 +1,10 @@
+{
+  "name": "ngTask"
+, "version": "0.0.1"
+, "private": true
+, "dependencies": {
+    "express": "latest"
+  , "connect": "2.7.0"
+  , "jade": "latest"
+  }
+}

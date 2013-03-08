@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="span3">
+        <ul >
+            <li ng-click="loadTaskList(item.id)" ng-repeat='item in tasklists'>
+                <a href=""  data-list-id={{item.id}}>{{item.title}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="span9">
+        <ul class="nav nav-tabs" id="top-nav">
+            <li class="buttons">
+                <div class="btn-group">
+                    <a href="#" class="btn" id="add-list-button"><i class="icon-plus"></i></a>
+                    <a href="#" class="btn" id="edit-list-button"><i class="icon-cog"></i></a>
+                    <a href="#" class="btn delete-list" id="delete-list-button"><i class="icon-trash"></i></a>
+                </div>
+            </li>
+        </ul>
+        <div class="tasks">
+            <ul class="nav-tasks">
+                <li ng-click="loadTask(item)" ng-repeat='item in tasks'>
+                    <a href="" >{{item.title}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

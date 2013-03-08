@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h3>
+        Edit Task
+    </h3>
+</div>
+<div class="modal-body">
+    <fieldset>
+        <legend>
+            Task Properties
+            <a href="#"  data-task-id="{{task.id}}" class="pull-right delete-task btn"><i class="icon-trash"></i></a>
+        </legend>
+        <div class="control-group">
+            <label for="task_title">
+                Title
+            </label>
+            <input type="text" ng-model="task.title" class="input-block-level" name="title" id="task_title"
+            value="{{task.title}}" placeholder="The task's title">
+        </div>
+        <div class="control-group" >
+            <label class="radio">
+                <input type="radio" name="status" value="needsAction" ng-model="task.status" >
+                Needs action
+            </label>
+            <label class="radio">
+                <input type="radio" name="status" value="completed" ng-model="task.status">
+                Complete
+            </label>
+        </div>
+        <div class="control-group">
+            <label for="task_notes">
+                Notes
+            </label>
+            <textarea ng-model="task.notes" class="input-block-level" name="notes" id="task_notes" placeholder="Notes about this task">{{task.notes}}</textarea>
+        </div>
+</div>
+</fieldset>
+</div>
+<div class="modal-footer">
+    <button ng-click="save()" class="btn btn-primary">
+        Save
+    </button>
+    <button ng-click="close(result)" class="btn">
+        Close
+    </button>
+</div>
