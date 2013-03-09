@@ -1,8 +1,9 @@
-// 'use strict';
+'use strict';
 
 // /* Services */
 
 angular.module('myApp.services', ['ngResource']).
+
 factory('taskData', function(){
 	var task;
 	var taskListId;
@@ -24,12 +25,13 @@ factory('taskData', function(){
 			return taskListId;
 		}
 	}
-});
+})
 
-//implement gapi service here
-// .factory('gapi', function($resource){
-
-// });
+.factory('gapis', function(){
+	return function(url, method, data, callback) {
+		gapi.client.tasks[url][method](data).execute(function(res){
+			callback(res);
+	    });
+	}
+})
   
-
-

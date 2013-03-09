@@ -48,17 +48,29 @@ function LoginCtrl($scope, $window) {
     handleClientLoad();
 }
 
-function MainCtrl($scope, $dialog, taskData) {
+function MainCtrl($scope, $dialog, taskData, gapis) {
   
-  gapi.client.tasks["tasklists"].list({userId: "@me"}).execute(function(res){
+  // gapi.client.tasks["tasklists"].list({userId: "@me"}).execute(function(res){
+  //   $scope.tasklists = res.items;
+  //   $scope.$apply();
+  //   $scope.loadTaskList(res.items[0].id);
+  //   taskData.setListId(res.items[0].id);
+  // });
+
+  gapis('tasklists', 'list', {userId: "@me"}, function(res){
     $scope.tasklists = res.items;
     $scope.$apply();
     $scope.loadTaskList(res.items[0].id);
     taskData.setListId(res.items[0].id);
+
   });
 
   $scope.loadTaskList = function(id) {
-    gapi.client.tasks["tasks"].list({tasklist: id}).execute(function(res){
+    // gapi.client.tasks["tasks"].list({tasklist: id}).execute(function(res){
+    //   $scope.tasks = res.items;
+    //   $scope.$apply();
+    // });
+    gapis('tasks', 'list', {tasklist:id}, function(res) {
       $scope.tasks = res.items;
       $scope.$apply();
     });
@@ -86,7 +98,7 @@ function MainCtrl($scope, $dialog, taskData) {
   }
 }
 
-function TestDialogCtrl($scope, $filter, dialog, taskData) {
+function TestDialogCtrl($scope, dialog, taskData, gapis) {
   $scope.task = taskData.get();
 
   $scope.close = function(result) {
@@ -97,7 +109,7 @@ function TestDialogCtrl($scope, $filter, dialog, taskData) {
     var data = {'resource' : $scope.task};
     data.tasklist = taskData.getListId();
     data.task = $scope.task.id;
-    gapi.client.tasks["tasks"].update(data).execute(function(res){
+    gapis('tasks', 'update', data, function(res){
       dialog.close();
     });
   }
